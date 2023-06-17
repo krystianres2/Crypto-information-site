@@ -1,0 +1,177 @@
+body{
+    background-color: #f8fafd;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8em;
+    color: #616e85;
+    margin: 0px;
+}
+
+i{
+    color: #a6b0c3;
+    margin: 0.5em;
+}
+
+a{
+    color: #3861fb;
+    text-decoration: none;
+}
+
+#topBar{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: #fff;
+}
+
+#infoBar{
+    display: flex;
+    gap: 2em;
+}
+
+#buttonsBar{
+    display: flex;
+    justify-content: end;
+    gap: 1em;
+}
+
+.btn{
+    border-radius: 9px;
+    padding: 0.7em;
+    border-width: 1px;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.btnFull{
+    background-color: #3861fb;
+    border-color: #3861fb;
+    color: #fff;
+}
+
+.btnWhite{
+    border-color: #3861fb;
+    color: #3861fb;
+    background-color: #fff;
+}
+
+.btnFull:hover{
+    background-color: #cfd6e4;
+}
+.btnWhite:hover{
+    background-color: #cfd6e4;
+}
+
+#nav{
+    display: flex;
+    justify-content: start;
+    gap: 2em;
+    align-items: center;
+}
+
+#nav a{
+    color: #222531;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+#nav a:hover{
+    color:#3861fb;
+}
+
+#options{
+    display: flex;
+    justify-content: end;
+    gap: 1em;
+}
+
+#options button{
+    background-color: #fff;
+    border: none;
+    padding: 1em;
+}
+
+#options button:hover{
+    background-color:#f8fafd;
+    border-radius: 9px;
+
+}
+
+
+
+#navBar{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    background-color: #fff;
+}
+#topBar, #navBar, #hero, #infoBox, #content{
+    padding: 1.2em;
+    border-bottom: 1px solid #eff2f5;
+    padding-left: 10em;
+    padding-right: 10em;
+}
+
+#hero{
+    
+}
+
+#infoBox{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+}
+
+.box{
+    border: 1px solid #eff2f5;
+    border-radius: 6px;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow:rgba(128, 138, 157, 0.04) 0px 8px 32px, rgba(128, 138, 157, 0.12) 0px 1px 2px;
+}
+
+#coinsTable{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#coinsTable tr{
+    border-top: 1px solid #eff2f5;
+    
+}
+
+#coinsTable tbody tr:hover{
+    background-color: #cfd6e4;
+}
+
+#coinsTable td, #coinsTable th{
+    padding: 1em;
+}
+
+.redText{
+    color: #eb7777;
+}
+
+.greenText{
+    color: #62db76;
+}
+
+.goldText{
+    color: #ffbb00;
+}
+
+#coinsTable button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 390px){
+    #infoBox, #topBar, #navBar{
+        grid-template-columns: 1fr;
+    }
+    #topBar, #navBar, #hero, #infoBox, #content{
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    #buttonsBar, #nav{
+        flex-direction: column;
+    }
+}
