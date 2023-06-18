@@ -23,12 +23,12 @@ async function fetchData() {
     displayData(result);
 
     watchListButton.addEventListener("click", displayFavoriteCoins);
-    console.log(await fetchDataInfo("Qwsogvtv82FCd"));
+    // console.log(await fetchDataInfo("Qwsogvtv82FCd"));
   } catch (error) {
     console.error(error);
   }
 }
-let coinInfo = document.getElementById("coinDescription");
+const coinInfo = document.getElementById("coinDescription");
 function displayData(result) {
   // const coinsTableDataElement = document.getElementById("coinsTableData");
   JSON.parse(result).data.coins.forEach((coin) => {
@@ -46,14 +46,7 @@ function displayData(result) {
     listOfCoins.push(coinObj);
   });
   displayTableData(listOfCoins);
-
-  const infoBarElement = document.getElementById("infoBar");
-  const stats = JSON.parse(result).data.stats;
-  infoBarElement.innerHTML += `
-  <span>Cryptos <a href="#">${stats.totalCoins}</a></span>
-  <span>Markets <a href="#">${stats.totalMarkets}</a></span>
-  <span>Total Market Cap <a href="#">${stats.totalMarketCap}</a></span>
-  `;
+  displayInfoBar(result);
 }
 
 function addToFav(id) {
@@ -76,6 +69,7 @@ function addToFav(id) {
   localStorage.listOfFavCoins = JSON.stringify(listOfFavCoins);
 }
 
+let watchListStateNum = -1;
 let watchListState = false;
 function displayFavoriteCoins() {
   // const coinsTableDataElement = document.getElementById("coinsTableData");
@@ -85,10 +79,12 @@ function displayFavoriteCoins() {
     // wyświetla wszystkie coiny
     displayTableData(listOfCoins);
     watchListState = false;
+    watchListStateNum = 0;
   } else {
     // wyświetla ulubione coiny
     displayWatchList(listOfCoins);
     watchListState = true;
+    watchListStateNum = 1;
   }
 }
 
@@ -105,9 +101,20 @@ async function fetchDataInfo(id) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result.data.coin.description);
-    coinInfo.innerHTML = result.data.coin.description;
+    // console.log(result.data.coin.description);
+    const coinDescription = result.data.coin.description;
+    if (coinDescription.trim() === "") {
+      coinInfo.style.display = "none";
+    } else {
+      coinInfo.textContent = coinDescription;
+      coinInfo.style.display = "block";
+    }
+    // coinInfo.innerHTML = result.data.coin.description;
   } catch (error) {
     console.error(error);
   }
+}
+
+function showAlert(message) {
+  alert(message);
 }
