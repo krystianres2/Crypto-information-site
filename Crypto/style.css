@@ -202,3 +202,39 @@ a {
   box-shadow: rgba(128, 138, 157, 0.04) 0px 8px 32px,
     rgba(128, 138, 157, 0.12) 0px 1px 2px;
 }
+ #timePeriods{
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #eff2f5;
+  border-radius: 6px;
+  margin: 1em 10em 0;
+  box-shadow: rgba(128, 138, 157, 0.04) 0px 8px 32px,
+    rgba(128, 138, 157, 0.12) 0px 1px 2px;
+}
+#valueTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#valueTable tr {
+  border-top: 1px solid #eff2f5;
+}
+
+#valueTable tbody tr:hover {
+  background-color: #cfd6e4;
+}
+
+#valueTable td,
+#valueTable th {
+  padding: 1em;
+  text-align: left;
+}
+#valueTable button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

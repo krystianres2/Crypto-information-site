@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
     <section id="topBar">
@@ -21,7 +21,7 @@
         </div>
     </section>
     <section id="navBar">
-        <div id="logo"><a href="#"><img src="Cryptoproject.png" alt="Logo"></a></div>
+        <div id="logo"><a href="index.html"><img src="Cryptoproject.png" alt="Logo"></a></div>
         <div id="nav">
             <a href="index4.html">Cryptocurrencies</a>
             <a href="index3.html">Exchanges</a>
@@ -35,25 +35,34 @@
     </section>
     <p id="coinDescription"></p>
     <section id="content">
+        <div id="tableContainer">
         <table id="coinsTable">
             <thead>
                 <tr>
-                    <th></th>
                     <th>#</th>
                     <th><button id="nameButton" >Name</button></th>
-                    <th><button id="priceButton" >Price</button></th>
-                    <th><button id="changeButton" >Change %</button></th>
-                    <th><button id="marketCapButton" >Market Cap</button></th>
+                    <th><button id="maxButton" >Max Amount</button></th>
+                    <th><button id="totalButton" >Total Amount</button></th>
+                    <th><button id="circulatingButton" >Circulating Amount</button></th>
 
                 </tr>
             </thead>
             <tbody id="coinsTableData">
+                <tr>
+                    <td colspan="5" id="tableText">Choose the cryptocurrencies you are interested in</td>
+                </tr>
                 
             </tbody>
         </table>
+    </div>
+    <div id="checkboxContainer">
+        <p>Choose: </p>
+        <div id="checkboxes"> 
+        </div>
+        <button id="boxesButton">Submit</button>
+    </div>
     </section>
-    <script src="script.js"></script>
-    <script src="script2.js"></script>
-    <!-- <script src="script3.js"></script> -->
+    
+    <script src="script4.js"></script>
 </body>
 </html>

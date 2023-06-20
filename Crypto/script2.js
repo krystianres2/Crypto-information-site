@@ -53,17 +53,17 @@ let marketCapButtonState = -1;
 nameButton.addEventListener("click", function () {
   nameButtonState = (nameButtonState + 1) % 2;
   console.log(nameButtonState);
-  priceButtonState=-1
-  changeButtonState=-1
-  marketCapButtonState=-1
+  priceButtonState = -1;
+  changeButtonState = -1;
+  marketCapButtonState = -1;
   displaySortedByName(listOfCoins);
 });
 priceButton.addEventListener("click", function () {
   priceButtonState = (priceButtonState + 1) % 2;
   console.log(priceButtonState);
   nameButtonState = -1;
-  changeButtonState=-1
-  marketCapButtonState=-1
+  changeButtonState = -1;
+  marketCapButtonState = -1;
   displaySortedByPrice(listOfCoins);
 });
 
