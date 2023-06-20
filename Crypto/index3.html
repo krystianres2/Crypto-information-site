@@ -23,7 +23,7 @@
     <section id="navBar">
         <div id="logo"><a href="index.html"><img src="Cryptoproject.png" alt="Logo"></a></div>
         <div id="nav">
-            <a href="#">Cryptocurrencies</a>
+            <a href="index4.html">Cryptocurrencies</a>
             <a href="index3.html">Exchanges</a>
             <a href="index2.html">Info</a>
             <a href="#" onclick="showAlert('E-mail: info@coinranking.com')">Contact</a>
@@ -33,24 +33,54 @@
             <button onclick="showAlert('Not yet implemented')"><i class="fa-solid fa-chart-pie"></i>Portfolio</button>
         </div>
     </section>
-    <p id="Info"> </p>
+    <section id="timePeriods">
+        <div id="radioButtons">
+            Time period: 
+            <label>
+                <input type="radio" name="infoRadio" value="3h" checked>
+                3h
+            </label>
+            <label>
+                <input type="radio" name="infoRadio" value="24h">
+                24h
+            </label>
+            <label>
+                <input type="radio" name="infoRadio" value="7d">
+                7d
+            </label>
+            <label>
+                <input type="radio" name="infoRadio" value="30d">
+                30d
+            </label>
+            <label>
+                <input type="radio" name="infoRadio" value="3m">
+                3m
+            </label>
+            <label>
+                <input type="radio" name="infoRadio" value="1y">
+                1y
+            </label>
+            
+            <button id="Submit" class="btn btnWhite">Submit</button>
+        </div>
+    
+    </section>
     <section id="content">
-        <table id="coinsTable">
+        <table id="valueTable">
             <thead>
                 <tr>
                     <th>#</th>
                     <th><button id="nameButton" >Name</button></th>
-                    <th><button id="priceButton" >Lowest price</button></th>
-                    <th><button id="changeButton" >Middle price</button></th>
-                    <th><button id="marketCapButton" >Highest price</button></th>
+                    <th><button id="lowestButton" >Lowest price</button></th>
+                    <th><button id="middleButton" >Middle price</button></th>
+                    <th><button id="highestButton" >Highest price</button></th>
                 </tr>
             </thead>
-            <tbody id="coinsTableData">
+            <tbody id="valueTableData">
                 
             </tbody>
         </table>
     </section>
-    <script src="script.js"></script>
     <script src="script2.js"></script>
     <script src="script3.js"></script>
 </body>
