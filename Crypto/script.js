@@ -23,14 +23,12 @@ async function fetchData() {
     displayData(result);
 
     watchListButton.addEventListener("click", displayFavoriteCoins);
-    // console.log(await fetchDataInfo("Qwsogvtv82FCd"));
   } catch (error) {
     console.error(error);
   }
 }
 const coinInfo = document.getElementById("coinDescription");
 function displayData(result) {
-  // const coinsTableDataElement = document.getElementById("coinsTableData");
   JSON.parse(result).data.coins.forEach((coin) => {
     const coinObj = new Coin(
       coin.uuid,
@@ -72,7 +70,6 @@ function addToFav(id) {
 let watchListStateNum = -1;
 let watchListState = false;
 function displayFavoriteCoins() {
-  // const coinsTableDataElement = document.getElementById("coinsTableData");
   coinsTableDataElement.innerHTML = "";
 
   if (watchListState) {
@@ -101,7 +98,6 @@ async function fetchDataInfo(id) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    // console.log(result.data.coin.description);
     const coinDescription = result.data.coin.description;
     if (coinDescription.trim() === "") {
       coinInfo.style.display = "none";
@@ -109,7 +105,6 @@ async function fetchDataInfo(id) {
       coinInfo.textContent = coinDescription;
       coinInfo.style.display = "block";
     }
-    // coinInfo.innerHTML = result.data.coin.description;
   } catch (error) {
     console.error(error);
   }

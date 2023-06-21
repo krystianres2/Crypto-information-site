@@ -101,16 +101,11 @@ body {
   }
   #topBar,
   #navBar,
-  #hero,
-  #infoBox,
   #content {
     padding: 1.2em;
   border-bottom: 1px solid #eff2f5;
   padding-left: 10em;
   padding-right: 10em;
-  }
-  
-  #hero {
   }
   
   #infoBox {
