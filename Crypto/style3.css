@@ -105,9 +105,9 @@ body {
   #infoBox,
   #content {
     padding: 1.2em;
-  border-bottom: 1px solid #eff2f5;
-  padding-left: 10em;
-  padding-right: 10em;
+    border-bottom: 1px solid #eff2f5;
+    padding-left: 10em;
+    padding-right: 10em;
   }
   
   #hero {
@@ -238,33 +238,50 @@ body {
     align-items: center;
     gap: 5px;
   }
-  #tableContainer {
-    flex: 1;
-    border-right: 1px solid #eff2f5; /* Add a right border */
-    padding-right: 1em; /* Add some padding to create a gap */
+  .coinCard {
+    display: flex;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: rgba(128, 138, 157, 0.04) 0px 8px 32px, rgba(128, 138, 157, 0.08) 0px 16px 64px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .coinLogo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 20px;
+  }
+  
+  .coinName {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .coinDescription {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  #checkboxContainer {
+    margin-left: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1em;
   }
   #checkboxes {
     display: flex;
     flex-direction: column;
-    gap: 1em;
-    margin-bottom: 0.5em;
+    gap: 0.5em;
   }
   #content {
     display: flex;
-    justify-content: space-between;
   }
-  #checkboxContainer {
-    flex: 0;
-    margin-left: 1em;
+  #coinDescriptions {
+    flex: 1;
   }
-  #checkboxes label {
-    display: flex;
-    align-items: center;
+  #boxesButton {
+    margin-top: 1em;
   }
-  #checkboxes input[type="checkbox"] {
-    margin-right: 0.5em;
-  }
-  #checkboxContainer p {
-    font-weight: bold; /* Make the text bold */
-  }
-  

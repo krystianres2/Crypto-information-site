@@ -64,14 +64,14 @@ function displaySortedByMax(list) {
   displayTable(list);
 }
 function displaySortedByTotal(list) {
-  list = sortByElement(list, "totalAmount");
+  list = sortByElementNum(list, "totalAmount");
   if (totalButtonState === 1) {
     list.reverse();
   }
   displayTable(list);
 }
 function displaySortedByCirculating(list) {
-  list = sortByElement(list, "circulatingAmount");
+  list = sortByElementNum(list, "circulatingAmount");
   if (circulatingButtonState === 1) {
     list.reverse();
   }
@@ -133,7 +133,7 @@ async function fetchId() {
       for (const id of checkedValues) {
         await fetchSupply(id);
       }
-      console.log(listOfSupply);
+      // console.log(listOfSupply);
       for (i = 0; i < listOfSupply.length; i++) {
         for (let k = 0; k < listOfCoins.length; k++) {
           if (listOfCoins[k].uuid == listOfSupply[i].uuid) {
@@ -144,9 +144,10 @@ async function fetchId() {
           }
         }
       }
-      console.log(listOfCoins);
+      // console.log(listOfCoins);
       prepareData(listOfCoins, i);
       displayTable(displayList);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }); //endListener
   } catch (error) {
     console.error(error);
@@ -165,7 +166,7 @@ function saveIdData(result) {
     );
     listOfCoins.push(coinObj);
   });
-  console.log(listOfCoins);
+  // console.log(listOfCoins);
 }
 
 async function fetchSupply(id) {
@@ -181,7 +182,7 @@ async function fetchSupply(id) {
   try {
     const response = await fetch(url, options);
     const result = await response.text();
-    console.log(result);
+    // console.log(result);
     saveToSupplyList(result, id);
   } catch (error) {
     console.error(error);
@@ -211,6 +212,8 @@ function createCheckBoxes(list) {
     `;
   });
 }
+
+
 function getCheckedCheckboxValues() {
   const checkboxes = document.querySelectorAll(
     '#checkboxes input[type="checkbox"]'
@@ -223,7 +226,7 @@ function getCheckedCheckboxValues() {
     }
   });
 
-  console.log(checkedValues);
+  // console.log(checkedValues);
 }
 function prepareData(list, num) {
   let j = 0;
@@ -265,7 +268,7 @@ function formatNumber(number) {
 }
 
 function sortByElement(list, element) {
-  console.log(element);
+  // console.log(element);
 
   function compare(a, b) {
     if (a[element] < b[element]) {
@@ -278,9 +281,27 @@ function sortByElement(list, element) {
   }
 
   const sortedList = list.slice().sort(compare);
-  // console.log(sortedList)
+   console.log(sortedList)
   return sortedList;
 }
+function sortByElementNum(list, element) {
+  function compare(a, b) {
+    const valueA = a[element] === " " ? 0 : parseFloat(a[element].replace(/,/g, ""));
+    const valueB = b[element] === " " ? 0 : parseFloat(b[element].replace(/,/g, ""));
+
+    if (valueA < valueB) {
+      return -1;
+    }
+    if (valueA > valueB) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const sortedList = list.slice().sort(compare);
+  return sortedList;
+}
+
 function showAlert(message) {
   alert(message);
 }

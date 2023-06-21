@@ -1,21 +1,25 @@
-fetchData();
-
-const submitButton = document.getElementById("Submit");
-const radioButtons = document.getElementsByName("infoRadio");
-const valueTableDataElement = document.getElementById("valueTableData");
-
-let listOfValues = [];
-let checkedValue;
+fetchBoxes();
 let listOfCoins = [];
-
-function DisplayPrice(price) {
-  return price.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+let listOfDataForBoxes = [];
+let checkedValues = [];
+const coinDescriptions = document.getElementById("coinDescriptions");
+const checkBoxes = document.getElementById("checkboxes");
+const boxesButton = document.getElementById("boxesButton");
+class Coin {
+  constructor(uuid, name, iconUrl, description) {
+    this.uuid = uuid;
+    this.name = name;
+    this.iconUrl = iconUrl;
+    this.description = description;
+  }
 }
-
-async function fetchData() {
+class Boxes {
+  constructor(uuid, name) {
+    this.uuid = uuid;
+    this.name = name;
+  }
+}
+async function fetchBoxes() {
   const url =
     "https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0";
   const options = {
@@ -29,64 +33,29 @@ async function fetchData() {
   try {
     const response = await fetch(url, options);
     const result = await response.text();
-    console.log(result);
-    fetchData2(
-      "Qwsogvtv82FCd",
-      "3h",
-      "1",
-      "https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg",
-      "Bitcoin"
-    );
-    displayData(result);
+    listOfCoins.length=0;
+    listOfDataForBoxes.length=0;
     displayInfoBar(result);
+    saveBoxesListData(result);
+    createCheckBoxes(listOfDataForBoxes);
 
-    // console.log(await fetchDataInfo("Qwsogvtv82FCd"));
+    boxesButton.addEventListener("click", async function () {
+      checkedValues.length=0;
+      console.log("Przed" + checkedValues.length);
+      getCheckedCheckboxValues();
+      for (const id of checkedValues) {
+        await fetchCoins(id);
+      }
+      displayData(listOfCoins);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   } catch (error) {
     console.error(error);
   }
 }
-function displayData(result) {
-  // const coinsTableDataElement = document.getElementById("coinsTableData");
-  JSON.parse(result).data.coins.forEach((coin) => {
-    const coinObj = new Coin(
-      coin.uuid,
-      coin.rank,
-      coin.symbol,
-      coin.iconUrl,
-      coin.name,
-      coin.price,
-      coin.change,
-      coin.marketCap
-    );
-    console.log(coinObj);
-    listOfCoins.push(coinObj);
-  });
-}
 
-function checkValue() {
-  for (const radioButton of radioButtons) {
-    if (radioButton.checked) {
-      checkedValue = radioButton.value;
-      break;
-    }
-  }
-}
-submitButton.addEventListener("click", function () {
-  valueTableDataElement.innerHTML = "";
-  submitValue();
-});
-
-function submitValue() {
-  checkValue();
-  listOfCoins.forEach((coin) => {
-    fetchData2(coin.uuid, checkedValue, coin.rank, coin.iconUrl, coin.name);
-  });
-
-  // fetchData("Qwsogvtv82FCd", checkedValue)
-}
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-async function fetchData2(id, timePeriod, rank, iconUrl, name) {
-  const url = `https://coinranking1.p.rapidapi.com/coin/${id}/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=${timePeriod}`;
+async function fetchCoins(id) {
+  const url = `https://coinranking1.p.rapidapi.com/coin/${id}?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h`;
   const options = {
     method: "GET",
     headers: {
@@ -96,69 +65,118 @@ async function fetchData2(id, timePeriod, rank, iconUrl, name) {
   };
 
   try {
-    await delay(1000);
     const response = await fetch(url, options);
     const result = await response.text();
-    displayData2(result, rank, iconUrl, name);
+    console.log(result);
+    saveToCoinsList(result);
   } catch (error) {
     console.error(error);
   }
 }
 
-function displayData2(result, rank, iconUrl, name) {
-  listOfValues.length = 0;
-  JSON.parse(result).data.history.forEach((value) => {
-    value.price = parseFloat(value.price);
-    listOfValues.push(value.price);
+// function saveToCoinsList(result) {
+//   JSON.parse(result).data.coin.forEach((coin) => {
+//     const coinObj = new Coin(
+//       coin.uuid,
+//       coin.name,
+//       coin.iconUrl,
+//       coin.description
+//     );
+//     listOfCoins.push(coinObj);
+//   });
+// }
+
+function saveToCoinsList(result){
+  const coinObj = new Coin(
+    JSON.parse(result).data.coin.uuid,
+    JSON.parse(result).data.coin.name,
+    JSON.parse(result).data.coin.iconUrl,
+    JSON.parse(result).data.coin.description
+  )
+  listOfCoins.push(coinObj);
+}
+
+function saveBoxesListData(result) {
+  JSON.parse(result).data.coins.forEach((coin) => {
+    const BoxObj = new Boxes(coin.uuid, coin.name);
+    listOfDataForBoxes.push(BoxObj);
   });
-  //   console.log(listOfValues);
-  displayTableData(listOfValues, rank, iconUrl, name);
+}
+function displayData(list){
+  console.log(list);
+  coinDescriptions.innerHTML = "";
+  list.forEach((coin)=>{
+  coinDescriptions.innerHTML+=`
+  <div class="coinCard">
+                <div class="coinLogo">
+                    <img src="${coin.iconUrl}" alt="Coin Logo">
+                </div>
+                <div class="coinInfo">
+                    <h3 class="coinName">${coin.name}</h3>
+                    <p class="coinDescription">${displayDescription(coin.description)}</p>
+                </div>
+            </div> 
+  `
+  })
+}
+function displayDescription(description){
+  if(description==null){
+    return "Nie posiada opisu";
+  }else{
+    return description;
+  }
 }
 
-function displayTableData(valueList, rank, iconUrl, name) {
-  valueTableDataElement.innerHTML += `
-    <tr>
-            <td>${rank}</td>
-            <td><img width="25px" src="${iconUrl}">${name}</td>
-            <td>${DisplayPrice(findMinValue(valueList))}</td>
-            <td>${DisplayPrice(findMaxValue(valueList))}</td>
-            <td>${DisplayPrice(calculateAverage(valueList))}</td>
-            </tr>
+function createCheckBoxes(list) {
+  list = sortByElement(list, "name");
+  checkBoxes.innerHTML = "";
+  list.forEach((coin) => {
+    checkBoxes.innerHTML += `
+    <label><input type="checkbox" value="${coin.uuid}">${coin.name}</label>
     `;
+  });
 }
-function findMinValue(list) {
-  if (list.length === 0) {
-    return null; // Return null if the list is empty
-  }
+function getCheckedCheckboxValues() {
+  const checkboxes = document.querySelectorAll(
+    '#checkboxes input[type="checkbox"]'
+  );
+  checkedValues.length = 0;
 
-  return Math.min(...list);
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      checkedValues.push(checkbox.value);
+    }
+  });
+
+  // console.log(checkedValues);
 }
 
-function findMaxValue(list) {
-  if (list.length === 0) {
-    return null; // Return null if the list is empty
-  }
-
-  return Math.max(...list);
-}
-function calculateAverage(list) {
-  if (list.length === 0) {
-    return null; // Return null if the list is empty
-  }
-
-  let sum = 0;
-  for (let i = 0; i < list.length; i++) {
-    sum += list[i];
-  }
-
-  return sum / list.length;
+function showAlert(message) {
+  alert(message);
 }
 function displayInfoBar(result) {
   const infoBarElement = document.getElementById("infoBar");
   const stats = JSON.parse(result).data.stats;
   infoBarElement.innerHTML += `
-    <span>Cryptos <a href="#">${stats.totalCoins}</a></span>
-    <span>Markets <a href="#">${stats.totalMarkets}</a></span>
-    <span>Total Market Cap <a href="#">${stats.totalMarketCap}</a></span>
-    `;
+  <span>Cryptos <a href="#">${stats.totalCoins}</a></span>
+  <span>Markets <a href="#">${stats.totalMarkets}</a></span>
+  <span>Total Market Cap <a href="#">${stats.totalMarketCap}</a></span>
+  `;
+}
+function sortByElement(list, element) {
+  // console.log(element);
+
+  function compare(a, b) {
+    if (a[element] < b[element]) {
+      return -1;
+    }
+    if (a[element] > b[element]) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const sortedList = list.slice().sort(compare);
+  console.log(sortedList);
+  return sortedList;
 }
