@@ -31,36 +31,31 @@ class Coin {
     return "";
   }
 }
+
+// Get reference to HTML elements
 const rankButton = document.getElementById("rankButton");
 const nameButton = document.getElementById("nameButton");
 const priceButton = document.getElementById("priceButton");
 const changeButton = document.getElementById("changeButton");
 const marketCapButton = document.getElementById("marketCapButton");
 
-// rankButton.addEventListener("click", displaySortedByRank(listOfCoins));
-// nameButton.addEventListener("click", displaySortedByName(listOfCoins));
-// priceButton.addEventListener("click", displayTableData(listOfCoins));
-// changeButton.addEventListener("click", displayTableData(listOfCoins));
-// marketCapButton.addEventListener("click", displayTableData(listOfCoins));
-// rankButton.addEventListener("click", function() {
-//   displaySortedByRank(listOfCoins);
-// });
+// Set initial button states
 let nameButtonState = -1;
 let priceButtonState = -1;
 let changeButtonState = -1;
 let marketCapButtonState = -1;
 
+// Event listeners for sorting buttons
 nameButton.addEventListener("click", function () {
   nameButtonState = (nameButtonState + 1) % 2;
-  console.log(nameButtonState);
   priceButtonState = -1;
   changeButtonState = -1;
   marketCapButtonState = -1;
   displaySortedByName(listOfCoins);
 });
+
 priceButton.addEventListener("click", function () {
   priceButtonState = (priceButtonState + 1) % 2;
-  console.log(priceButtonState);
   nameButtonState = -1;
   changeButtonState = -1;
   marketCapButtonState = -1;
@@ -69,7 +64,6 @@ priceButton.addEventListener("click", function () {
 
 changeButton.addEventListener("click", function () {
   changeButtonState = (changeButtonState + 1) % 2;
-  console.log(changeButtonState);
   nameButtonState = -1;
   priceButtonState = -1;
   marketCapButtonState = -1;
@@ -78,17 +72,13 @@ changeButton.addEventListener("click", function () {
 
 marketCapButton.addEventListener("click", function () {
   marketCapButtonState = (marketCapButtonState + 1) % 2;
-  console.log(marketCapButtonState);
   nameButtonState = -1;
   priceButtonState = -1;
   changeButtonState = -1;
   displaySortedByMarketCap(listOfCoins);
 });
 
-// function displaySortedByRank(list){
-//   list = sortByElement(list, "rank");
-//   displayTableData(list);
-// }
+// Sort and display functions based on different criteria
 function displaySortedByName(list) {
   list = sortByElement(list, "name");
   if (nameButtonState === 1) {
@@ -137,6 +127,7 @@ function displaySortedByMarketCap(list) {
   }
 }
 
+// Display table data
 function displayTableData(CoinsList) {
   coinsTableDataElement.innerHTML = "";
   CoinsList.forEach((coin) => {
@@ -158,6 +149,7 @@ function displayTableData(CoinsList) {
   displayFav();
 }
 
+// Display watchlist
 function displayWatchList(CoinsList) {
   coinsTableDataElement.innerHTML = "";
   CoinsList.forEach((coin) => {
@@ -179,18 +171,8 @@ function displayWatchList(CoinsList) {
     }
   });
 }
-// function displayFav() {
-//   if (localStorage.listOfFavCoins) {
-//     const favList = JSON.parse(localStorage.listOfFavCoins);
 
-//     favList.forEach((id) => {
-//       document.querySelector(`#${id} i`).classList = [
-//         "fa-star fa-solid goldText",
-//       ];
-//     });
-//     listOfFavCoins = favList;
-//   }
-// }
+// Display favorites
 function displayFav() {
   if (localStorage.listOfFavCoins) {
     const favList = JSON.parse(localStorage.listOfFavCoins);
@@ -206,6 +188,7 @@ function displayFav() {
   }
 }
 
+// Display info bar
 function displayInfoBar(result) {
   const infoBarElement = document.getElementById("infoBar");
   const stats = JSON.parse(result).data.stats;
@@ -216,9 +199,8 @@ function displayInfoBar(result) {
   `;
 }
 
+// Sort array by element
 function sortByElement(list, element) {
-  console.log(element);
-
   function compare(a, b) {
     if (a[element] < b[element]) {
       return -1;
@@ -230,6 +212,5 @@ function sortByElement(list, element) {
   }
 
   const sortedList = list.slice().sort(compare);
-  // console.log(sortedList)
   return sortedList;
 }

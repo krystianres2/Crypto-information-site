@@ -3,7 +3,7 @@ let listOfSupply = [];
 let listOfCoins = [];
 let checkedValues = [];
 let displayList = [];
-// let i=0;
+
 const checkBoxes = document.getElementById("checkboxes");
 const boxesButton = document.getElementById("boxesButton");
 const coinsTableDataElement = document.getElementById("coinsTableData");
@@ -19,7 +19,6 @@ let circulatingButtonState = -1;
 
 nameButton.addEventListener("click", function () {
   nameButtonState = (nameButtonState + 1) % 2;
-  console.log(nameButtonState);
   maxButtonState = -1;
   totalButtonState = -1;
   circulatingButtonState = -1;
@@ -27,7 +26,6 @@ nameButton.addEventListener("click", function () {
 });
 maxButton.addEventListener("click", function () {
   maxButtonState = (maxButtonState + 1) % 2;
-  console.log(maxButtonState);
   nameButtonState = -1;
   totalButtonState = -1;
   circulatingButtonState = -1;
@@ -35,7 +33,6 @@ maxButton.addEventListener("click", function () {
 });
 totalButton.addEventListener("click", function () {
   totalButtonState = (totalButtonState + 1) % 2;
-  console.log(totalButtonState);
   maxButtonState = -1;
   nameButtonState = -1;
   circulatingButtonState = -1;
@@ -43,7 +40,6 @@ totalButton.addEventListener("click", function () {
 });
 circulatingButton.addEventListener("click", function () {
   circulatingButtonState = (circulatingButtonState + 1) % 2;
-  console.log(circulatingButtonState);
   maxButtonState = -1;
   totalButtonState = -1;
   nameButtonState = -1;
@@ -57,7 +53,7 @@ function displaySortedByName(list) {
   displayTable(list);
 }
 function displaySortedByMax(list) {
-  list = sortByElement(list, "maxAmount");
+  list = sortByElementNum(list, "maxAmount");
   if (maxButtonState === 1) {
     list.reverse();
   }
@@ -118,22 +114,22 @@ async function fetchId() {
     const result = await response.text();
     saveIdData(result);
     createCheckBoxes(listOfCoins);
-    displayInfoBar(result)
+    displayInfoBar(result);
     boxesButton.addEventListener("click", async function () {
       listOfCoins.length = 0;
       displayList.length = 0;
       saveIdData(result);
       let i = 0;
       listOfSupply.length = 0;
-      // console.log(i);
       getCheckedCheckboxValues();
-      // checkedValues.forEach((id)=>{
-      //  await fetchSupply(id);
-      // })
+      if (checkedValues.length > 15) {
+        alert(
+          "Due to optimization, it is recommended to choose no more than 15 cryptocurrencies"
+        );
+      }
       for (const id of checkedValues) {
         await fetchSupply(id);
       }
-      // console.log(listOfSupply);
       for (i = 0; i < listOfSupply.length; i++) {
         for (let k = 0; k < listOfCoins.length; k++) {
           if (listOfCoins[k].uuid == listOfSupply[i].uuid) {
@@ -144,7 +140,6 @@ async function fetchId() {
           }
         }
       }
-      // console.log(listOfCoins);
       prepareData(listOfCoins, i);
       displayTable(displayList);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -166,7 +161,6 @@ function saveIdData(result) {
     );
     listOfCoins.push(coinObj);
   });
-  // console.log(listOfCoins);
 }
 
 async function fetchSupply(id) {
@@ -182,7 +176,6 @@ async function fetchSupply(id) {
   try {
     const response = await fetch(url, options);
     const result = await response.text();
-    // console.log(result);
     saveToSupplyList(result, id);
   } catch (error) {
     console.error(error);
@@ -190,7 +183,6 @@ async function fetchSupply(id) {
 }
 
 function saveToSupplyList(result, id) {
-  // JSON.parse(result).data.supply.forEach((coin)=>{
   const coinObj = new Coin(
     id,
     " ",
@@ -201,7 +193,6 @@ function saveToSupplyList(result, id) {
     JSON.parse(result).data.supply.circulatingAmount
   );
   listOfSupply.push(coinObj);
-  // });
 }
 function createCheckBoxes(list) {
   list = sortByElement(list, "name");
@@ -212,7 +203,6 @@ function createCheckBoxes(list) {
     `;
   });
 }
-
 
 function getCheckedCheckboxValues() {
   const checkboxes = document.querySelectorAll(
@@ -225,8 +215,6 @@ function getCheckedCheckboxValues() {
       checkedValues.push(checkbox.value);
     }
   });
-
-  // console.log(checkedValues);
 }
 function prepareData(list, num) {
   let j = 0;
@@ -268,8 +256,6 @@ function formatNumber(number) {
 }
 
 function sortByElement(list, element) {
-  // console.log(element);
-
   function compare(a, b) {
     if (a[element] < b[element]) {
       return -1;
@@ -281,13 +267,19 @@ function sortByElement(list, element) {
   }
 
   const sortedList = list.slice().sort(compare);
-   console.log(sortedList)
   return sortedList;
 }
+
 function sortByElementNum(list, element) {
   function compare(a, b) {
-    const valueA = a[element] === " " ? 0 : parseFloat(a[element].replace(/,/g, ""));
-    const valueB = b[element] === " " ? 0 : parseFloat(b[element].replace(/,/g, ""));
+    const valueA =
+      a[element] === null
+        ? Number.POSITIVE_INFINITY
+        : parseFloat(a[element].replace(/,/g, ""));
+    const valueB =
+      b[element] === null
+        ? Number.POSITIVE_INFINITY
+        : parseFloat(b[element].replace(/,/g, ""));
 
     if (valueA < valueB) {
       return -1;

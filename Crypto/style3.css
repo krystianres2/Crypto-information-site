@@ -109,10 +109,8 @@ body {
     padding-left: 10em;
     padding-right: 10em;
   }
-  
-  #hero {
-  }
-  
+ 
+ 
   #infoBox {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -270,6 +268,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 1em;
+    padding-left: 1em;
+    border-left: 5px solid #8e9192b2;
   }
   #checkboxes {
     display: flex;
@@ -281,7 +281,14 @@ body {
   }
   #coinDescriptions {
     flex: 1;
+    margin-bottom: 1em;
+    /* border-right: 1px solid #05223f; */
+    padding-bottom: 1em;
   }
   #boxesButton {
     margin-top: 1em;
   }
+  #checkboxContainer p {
+    font-weight: bold; /* Make the text bold */
+  }
+  
