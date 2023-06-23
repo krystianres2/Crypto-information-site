@@ -262,4 +262,55 @@ body {
   #checkboxContainer p {
     font-weight: bold; /* Make the text bold */
   }
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
   
+  .checkbox-wrapper input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-wrapper label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .checkbox-wrapper label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .checkbox-wrapper input:checked + label:before {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+  }
+  
+  .checkbox-wrapper label:after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    width: 6px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  
+  .checkbox-wrapper input:checked + label:after {
+    opacity: 1;
+  }
+  #boxesButton{
+    margin-top: 10px;
+  }
