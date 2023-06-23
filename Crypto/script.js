@@ -104,6 +104,7 @@ async function fetchDataInfo(id) {
     } else {
       coinInfo.textContent = coinDescription;
       coinInfo.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
     }
   } catch (error) {
     console.error(error);

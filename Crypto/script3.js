@@ -9,11 +9,12 @@ const checkBoxes = document.getElementById("checkboxes");
 const boxesButton = document.getElementById("boxesButton");
 
 class Coin {
-  constructor(uuid, name, iconUrl, description) {
+  constructor(uuid, name, iconUrl, description, websiteUrl) {
     this.uuid = uuid;
     this.name = name;
     this.iconUrl = iconUrl;
     this.description = description;
+    this.websiteUrl=websiteUrl;
   }
 }
 
@@ -98,7 +99,8 @@ function saveToCoinsList(result) {
     JSON.parse(result).data.coin.uuid,
     JSON.parse(result).data.coin.name,
     JSON.parse(result).data.coin.iconUrl,
-    JSON.parse(result).data.coin.description
+    JSON.parse(result).data.coin.description,
+    JSON.parse(result).data.coin.websiteUrl
   );
   listOfCoins.push(coinObj);
 }
@@ -124,6 +126,7 @@ function displayData(list) {
         <div class="coinInfo">
           <h3 class="coinName">${coin.name}</h3>
           <p class="coinDescription">${displayDescription(coin.description)}</p>
+          <a class="coinWebsite" href="${coin.websiteUrl}" target="_blank">${formatWebsiteUrl(coin.websiteUrl)}</a>
         </div>
       </div> 
     `;
@@ -196,4 +199,16 @@ function sortByElement(list, element) {
 
   const sortedList = list.slice().sort(compare);
   return sortedList;
+}
+function formatWebsiteUrl(url) {
+  // Remove the protocol (http:// or https://) if present
+  let formattedUrl = url.replace(/(^\w+:|^)\/\//, '');
+
+  // Truncate the URL if it's too long
+  const maxLength = 30;
+  if (formattedUrl.length > maxLength) {
+    formattedUrl = formattedUrl.substring(0, maxLength - 3) + '...';
+  }
+
+  return formattedUrl;
 }
