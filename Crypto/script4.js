@@ -199,7 +199,10 @@ function createCheckBoxes(list) {
   checkBoxes.innerHTML = "";
   list.forEach((coin) => {
     checkBoxes.innerHTML += `
-    <label><input type="checkbox" value="${coin.uuid}"/> <span>${coin.name}</span></label>
+    <div class="checkbox-wrapper">
+    <input type="checkbox" id="${coin.uuid}" value="${coin.uuid}">
+    <label for="${coin.uuid}">${coin.name}</label>
+  </div>
     `;
   });
 }
