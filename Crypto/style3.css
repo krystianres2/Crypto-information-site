@@ -291,4 +291,21 @@ body {
   #checkboxContainer p {
     font-weight: bold; /* Make the text bold */
   }
-  
+  /* CSS for the coin website URL */
+.coinWebsite {
+  display: block;
+  margin-top: 5px;
+  color: #007bff; /* Set the color of the link */
+  text-decoration: none;
+}
+
+.coinWebsite:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Truncate long website URLs with ellipsis */
+.coinWebsite {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
