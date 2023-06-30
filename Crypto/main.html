@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrencies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainStyle.css">
+</head>
+<body>
+    <section id="topBar">
+        <div id="infoBar">
+        </div>
+        <div id="buttonsBar">
+            <button class="btn btnWhite" onclick="showAlert('Not implemented yet')">Log In</button>
+            <button class="btn btnFull" onclick="showAlert('Not implemented yet')">Sign Up</button>
+        </div>
+    </section>
+    <section id="navBar">
+        <div id="logo"><a href="#"><img src="Cryptoproject.png" alt="Logo"></a></div>
+        <div id="nav">
+            <a href="main.html">Cryptocurrencies</a>
+            <a href="supply.html">Supply</a>
+            <a href="info.html">Info</a>
+            <a href="#" onclick="showAlert('E-mail: info@coinranking.com')">Contact</a>
+        </div>
+        <div id="options">
+            <button id="watchList"><i class="fa-solid fa-star"></i>Watchlist</button>
+            <button onclick="showAlert('Not implemented yet')"><i class="fa-solid fa-chart-pie"></i>Portfolio</button>
+        </div>
+    </section>
+    <p id="coinDescription"></p>
+    <section id="content">
+        <table id="coinsTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th><button id="nameButton" >Name</button></th>
+                    <th><button id="priceButton" >Price</button></th>
+                    <th><button id="changeButton" >Change %</button></th>
+                    <th><button id="marketCapButton" >Market Cap</button></th>
+
+                </tr>
+            </thead>
+            <tbody id="coinsTableData">
+                
+            </tbody>
+        </table>
+    </section>
+    <script src="mainScript.js"></script>
+    <script src="mainScript2.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="supplyStyle.css">
+</head>
+<body>
+    <section id="topBar">
+        <div id="infoBar">
+        </div>
+        <div id="buttonsBar">
+            <button class="btn btnWhite" onclick="showAlert('Not implemented yet')">Log In</button>
+            <button class="btn btnFull" onclick="showAlert('Not implemented yet')">Sign Up</button>
+        </div>
+    </section>
+    <section id="navBar">
+        <div id="logo"><a href="index.html"><img src="Cryptoproject.png" alt="Logo"></a></div>
+        <div id="nav">
+            <a href="index.html">Cryptocurrencies</a>
+            <a href="supply.html">Supply</a>
+            <a href="info.html">Info</a>
+            <a href="#" onclick="showAlert('E-mail: info@coinranking.com')">Contact</a>
+        </div>
+        <div id="options">
+            <button id="watchList"><i class="fa-solid fa-star"></i>Watchlist</button>
+            <button onclick="showAlert('Not implemented yet')"><i class="fa-solid fa-chart-pie"></i>Portfolio</button>
+        </div>
+    </section>
+    <p id="coinDescription"></p>
+    <section id="content">
+        <div id="tableContainer">
+        <table id="coinsTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><button id="nameButton" >Name</button></th>
+                    <th><button id="maxButton" >Max Amount</button></th>
+                    <th><button id="totalButton" >Total Amount</button></th>
+                    <th><button id="circulatingButton" >Circulating Amount</button></th>
+
+                </tr>
+            </thead>
+            <tbody id="coinsTableData">
+                <tr>
+                    <td colspan="5" id="tableText">Choose the cryptocurrencies you are interested in</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    <div id="checkboxContainer">
+        <p>Choose: </p>
+        <div id="checkboxes"> 
+        </div>
+        <button class="btn btnFull" id="boxesButton">Submit</button>
+    </div>
+    </section>
+    
+    
+    <script src="supplyScript.js"></script>
+</body>
+</html>

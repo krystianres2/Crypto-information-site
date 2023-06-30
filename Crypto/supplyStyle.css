@@ -1,0 +1,316 @@
+body {
+    background-color: #f8fafd;
+    font-family: "Inter", sans-serif;
+    font-size: 0.8em;
+    color: #616e85;
+    margin: 0px;
+  }
+  
+  i {
+    color: #a6b0c3;
+    margin: 0.5em;
+  }
+  
+  a {
+    color: #3861fb;
+    text-decoration: none;
+  }
+  
+  #topBar {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: #fff;
+  }
+  
+  #infoBar {
+    display: flex;
+    gap: 2em;
+  }
+  
+  #buttonsBar {
+    display: flex;
+    justify-content: end;
+    gap: 1em;
+  }
+  
+  .btn {
+    border-radius: 9px;
+    padding: 0.7em;
+    border-width: 1px;
+    font-weight: 700;
+    font-size: 1em;
+  }
+  
+  .btnFull {
+    background-color: #3861fb;
+    border-color: #3861fb;
+    color: #fff;
+  }
+  
+  .btnWhite {
+    border-color: #3861fb;
+    color: #3861fb;
+    background-color: #fff;
+  }
+  
+  .btnFull:hover {
+    background-color: #cfd6e4;
+  }
+  .btnWhite:hover {
+    background-color: #cfd6e4;
+  }
+  
+  #nav {
+    display: flex;
+    justify-content: start;
+    gap: 2em;
+    align-items: center;
+  }
+  
+  #nav a {
+    color: #222531;
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+  
+  #nav a:hover {
+    color: #3861fb;
+  }
+  
+  #options {
+    display: flex;
+    justify-content: end;
+    gap: 1em;
+  }
+  
+  #options button {
+    background-color: #fff;
+    border: none;
+    padding: 1em;
+  }
+  
+  #options button:hover {
+    background-color: #f8fafd;
+    border-radius: 9px;
+  }
+  
+  #navBar {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    background-color: #fff;
+  }
+  #topBar,
+  #navBar,
+  #content {
+    padding: 1.2em;
+  border-bottom: 1px solid #eff2f5;
+  padding-left: 10em;
+  padding-right: 10em;
+  }
+  
+  #infoBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+  }
+  
+  .box {
+    border: 1px solid #eff2f5;
+    border-radius: 6px;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: rgba(128, 138, 157, 0.04) 0px 8px 32px,
+      rgba(128, 138, 157, 0.12) 0px 1px 2px;
+  }
+  
+  #coinsTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #coinsTable tr {
+    border-top: 1px solid #eff2f5;
+  }
+  
+  #coinsTable tbody tr:hover {
+    background-color: #cfd6e4;
+  }
+  
+  #coinsTable td,
+  #coinsTable th {
+    padding: 1em;
+    text-align: left;
+  }
+  
+  .redText {
+    color: #eb7777;
+  }
+  
+  .greenText {
+    color: #62db76;
+  }
+  
+  .goldText {
+    color: #ffbb00;
+  }
+  
+  #coinsTable button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  @media screen and (max-width: 390px) {
+    #infoBox,
+    #topBar,
+    #navBar {
+      grid-template-columns: 1fr;
+    }
+    #topBar,
+    #navBar,
+    #hero,
+    #infoBox,
+    #content {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    #buttonsBar,
+    #nav {
+      flex-direction: column;
+    }
+  }
+  /* button.active {
+      background-color: black;
+      /* Add any other styles to indicate the active button */
+  /* } */
+  #coinDescription {
+    display: none;
+    padding: 1em;
+    background-color: #fff;
+    border: 1px solid #eff2f5;
+    border-radius: 6px;
+    margin: 1em 10em 0;
+    box-shadow: rgba(128, 138, 157, 0.04) 0px 8px 32px,
+      rgba(128, 138, 157, 0.12) 0px 1px 2px;
+  }
+   #timePeriods{
+    padding: 1em;
+    background-color: #fff;
+    border: 1px solid #eff2f5;
+    border-radius: 6px;
+    margin: 1em 10em 0;
+    box-shadow: rgba(128, 138, 157, 0.04) 0px 8px 32px,
+      rgba(128, 138, 157, 0.12) 0px 1px 2px;
+  }
+  #valueTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #valueTable tr {
+    border-top: 1px solid #eff2f5;
+  }
+  
+  #valueTable tbody tr:hover {
+    background-color: #cfd6e4;
+  }
+  
+  #valueTable td,
+  #valueTable th {
+    padding: 1em;
+    text-align: left;
+  }
+  #valueTable button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  #tableContainer {
+    flex: 1;
+    border-right: 1px solid #eff2f5; /* Add a right border */
+    padding-right: 1em; /* Add some padding to create a gap */
+  }
+  #checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 0.5em;
+  }
+  #content {
+    display: flex;
+    justify-content: space-between;
+  }
+  #checkboxContainer {
+    flex: 0;
+    margin-left: 1em;
+  }
+  #checkboxes label {
+    display: flex;
+    align-items: center;
+  }
+  #checkboxes input[type="checkbox"] {
+    margin-right: 0.5em;
+  }
+  #checkboxContainer p {
+    font-weight: bold; /* Make the text bold */
+  }
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox-wrapper input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-wrapper label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .checkbox-wrapper label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .checkbox-wrapper input:checked + label:before {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+  }
+  
+  .checkbox-wrapper label:after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    width: 6px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  
+  .checkbox-wrapper input:checked + label:after {
+    opacity: 1;
+  }
+  #boxesButton{
+    margin-top: 10px;
+  }
